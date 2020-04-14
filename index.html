@@ -1,0 +1,124 @@
+<html lang="en">
+    <meta charset="UTF-8">
+    <html>
+<head>
+<title>Juego trivial</title>
+</head>
+
+<script>
+//respuestas correctas
+respuestas=[0, 1, 2, 3, 2, 2, 1, 1, 1, 3, 3];    
+function resultado() {
+
+var respondidas=0;
+var correctas=0;
+
+//comprobar si están respondidas todas las preguntas
+for (var x=1; x < 11; x++) {
+ if(document.getElementById("p"+x+1).checked  || document.getElementById("p"+x+2).checked  || document.getElementById("p"+x+3).checked){
+respondidas+=1;
+
+//si no lo están marcar en rojo la que no esté contestada
+ } else {
+    document.getElementById("r"+x).style.backgroundColor="red";
+ }
+ }
+ //si se ha respondido a las 10 preguntas, no se marca con ningún color
+if (respondidas==10){
+    for (var x=1; x < 11; x++) {
+        //quitar el rojo
+        document.getElementById("r"+x).style.backgroundColor="";
+        //coger el texto
+         textoPregunta =  document.getElementById("r"+x).innerHTML; 
+//si está marcada la respuesta correcta lo sumamos a los aciertos
+ if(document.getElementById("p"+x+respuestas[x]).checked){
+correctas+=1;
+//check verde
+document.getElementById("r"+x).innerHTML="&#x2714"+textoPregunta;
+//marcar en verde si es acierto
+document.getElementById("r"+x).style.color="green";
+
+
+ } else {
+     //tachado rojo
+    document.getElementById("r"+x).innerHTML="&#x2718"+textoPregunta;
+    //texto rojo pregunta no acertada77
+    document.getElementById("r"+x).style.color="red";
+     }
+ }
+
+}else {
+
+    alert("No has respondido a todas las preguntas");
+}
+//document.getElementById("p101").style.backgroundColor="red";
+
+document.getElementById("res").value = correctas;
+}
+</script>
+<body>
+<h2>Trivial</h2>
+<hr>
+<form style="font:normal 16px sans-serif">
+<!--<p name="pregunta1" >&#x2714</p>
+<p name="pregunta1" >&#x2718</p>
+
+onclick="this.style.color='#00FF00'">-->
+
+
+<p id="r1">¿Cuál es el idioma más hablado en Suiza?</p>
+<p><input type="radio" name="pregunta1" id="p11">Alemán</p>
+<p><input type="radio" name="pregunta1" id="p12">Español</p>
+<p><input type="radio" name="pregunta1" id="p13">Francés</p>
+ 
+<p id="r2">¿Qué país está entre Perú y Colombia?</p>
+<p><input type="radio" name="pregunta2" id="p21">Brasil</p>
+<p><input type="radio" name="pregunta2" id="p22">Ecuador</p>
+<p><input type="radio" name="pregunta2" id="p23">Argentina</p>
+ 
+<p id="r3">¿Cuál es el río más largo de Europa Occidental?</p>
+<p><input type="radio" name="pregunta3" id="p31"> Támesis</p>
+<p><input type="radio" name="pregunta3" id="p32"> Ebro</p>
+<p><input type="radio" name="pregunta3" id="p33"> Rin</p>
+ 
+<p id="r4"> ¿Qué lago baña la ciudad de Ginebra?</p>
+<p><input type="radio" name="pregunta4" id="p41">El lago Azul</p>
+<p><input type="radio" name="pregunta4" id="p42">El lago Leman.</p>
+<p><input type="radio" name="pregunta4" id="p43">El lago Gebra</p>
+
+<p id="r5">¿En qué país europeo se habla el magyar?</p>
+<p><input type="radio" name="pregunta5" id="p51">Austria</p>
+<p><input type="radio" name="pregunta5" id="p52">Hungría</p>
+<p><input type="radio" name="pregunta5" id="p53">Francia</p>
+
+<p id="r6"> ¿Qué palabra significa “hijo de” en los apellidos escoceses?</p>
+<p><input type="radio" name="pregunta6" id="p61">Mac</p>
+<p><input type="radio" name="pregunta6" id="p62">Strong</p>
+<p><input type="radio" name="pregunta6" id="p63">Fils</p>
+
+<p id="r7">¿Cuál es la capital de Indonesia?</p>
+<p><input type="radio" name="pregunta7" id="p71">Jakarta</p>
+<p><input type="radio" name="pregunta7" id="p72">Banten</p>
+<p><input type="radio" name="pregunta7" id="p73">Bandung</p>
+
+<p id="r8"> ¿En qué país se encuentra el pico Aconcagua?</p>
+<p><input type="radio" name="pregunta8" id="p81">Argentina</p>
+<p><input type="radio" name="pregunta8" id="p82">Nepal</p>
+<p><input type="radio" name="pregunta8" id="p83">China</p>
+
+<p id="r9">¿En qué hemisferio se encuentra Jamaica?</p>
+<p><input type="radio" name="pregunta9" id="p91">Sur</p>
+<p><input type="radio" name="pregunta9" id="p92">Oeste</p>
+<p><input type="radio" name="pregunta9" id="p93">Norte</p>
+
+<p id="r10">¿A qué país pertenece la isla de Creta?</p>
+<p><input type="radio" name="pregunta10" id="p101">Cretacia</p>
+<p><input type="radio" name="pregunta10" id="p102">Túnez</p>
+<p><input type="radio" name="pregunta10" id="p103">Grecia</p>
+
+<p><input type="button" value="ACIERTOS" onclick="resultado()"/></p>
+<input id="res" type="text"  readonly=»readonly» name="nombredelacaja">
+</form>
+</body>
+</html>
+
